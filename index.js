@@ -10,12 +10,16 @@ var bot = new Twit({
   timeout_ms: 60*1000
 });
 
-bot.post('statuses/update', {
-  status: 'Hello, world! This is posted by bot!!'
-}, function(err, data, response) {
-  if (err) {
-    console.log(err);
-  } else {
-    console.log(data.text + 'was tweeted.');
-  }
-});
+function updateStatus(status) {
+  bot.post('statuses/update', {
+    status: status
+  }, function(err, data, response) {
+    if (err) {
+      console.log(err);
+    } else {
+      console.log(data.text + 'was tweeted.');
+    }
+  });
+}
+
+updateStatus('Hello, world! This is posted by bot!!!');
